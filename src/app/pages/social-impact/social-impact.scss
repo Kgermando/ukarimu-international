@@ -1,0 +1,161 @@
+.section-pad { padding: 80px 0; }
+.bg-light { background: var(--offwhite); }
+.section-header { margin-bottom: 48px; &.center { text-align: center; } }
+.section-title.white { color: var(--white); }
+
+.intro__text {
+  font-size: 1.05rem; color: var(--text-light); line-height: 1.8;
+  max-width: 800px; margin: 0 auto; text-align: center;
+}
+
+/* ── Impact Areas ───────────────────────────────────────── */
+.areas__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.area-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-100);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+
+  &:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+  &__num {
+    position: absolute; top: 20px; right: 20px;
+    font-size: 2.5rem; font-weight: 800;
+    color: var(--gray-100); line-height: 1;
+    user-select: none;
+  }
+
+  &__icon {
+    width: 52px; height: 52px;
+    background: rgba(21,167,173,.1);
+    border-radius: var(--radius-md);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+    mat-icon { color: var(--teal); font-size: 26px; width: 26px; height: 26px; }
+  }
+
+  &__title {
+    font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 10px;
+  }
+
+  &__desc {
+    font-size: 0.88rem; color: var(--text-light); line-height: 1.6; margin-bottom: 16px;
+  }
+}
+
+.area-photo {
+  height: 100px;
+  background: var(--gray-100);
+  border: 1.5px dashed var(--gray-300);
+  border-radius: var(--radius-sm);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 4px; color: var(--gray-600); font-size: 0.78rem;
+  mat-icon { font-size: 24px; width: 24px; height: 24px; color: var(--gray-300); }
+}
+
+/* ── Stats ──────────────────────────────────────────────── */
+.stats-section {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-medium) 100%);
+  color: var(--white);
+}
+
+.stats__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.stat-card {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  text-align: center;
+  padding: 32px 16px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+
+  &:hover { background: rgba(21,167,173,.12); border-color: var(--teal); }
+
+  &__icon {
+    width: 48px; height: 48px;
+    background: rgba(21,167,173,.15);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    mat-icon { color: var(--teal-light); font-size: 24px; width: 24px; height: 24px; }
+  }
+
+  &__value {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 800; color: var(--teal-light); line-height: 1;
+  }
+
+  &__label { font-size: 0.9rem; color: rgba(255,255,255,.7); }
+}
+
+/* ── Testimonials ───────────────────────────────────────── */
+.testimonials__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+
+.testi-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-100);
+  position: relative;
+
+  .quote-icon {
+    font-size: 48px; width: 48px; height: 48px;
+    color: var(--gray-100);
+    position: absolute; top: 16px; right: 20px;
+  }
+
+  &__text {
+    font-size: 1rem;
+    color: var(--text-main);
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+
+  &__author {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 0.9rem; font-weight: 600; color: var(--navy);
+
+    .author-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(21,167,173,.1);
+      display: flex; align-items: center; justify-content: center;
+      mat-icon { color: var(--teal); font-size: 22px; width: 22px; height: 22px; }
+    }
+  }
+}
+
+/* ── CTA ──────────────────────────────────────────────── */
+.cta-banner {
+  background: linear-gradient(135deg, var(--teal-dark) 0%, var(--navy) 100%);
+  color: var(--white);
+}
+.cta__inner {
+  text-align: center;
+  h2 { font-size: clamp(1.4rem, 3vw, 2rem); color: var(--white); margin-bottom: 24px; }
+}
+
+@media (max-width: 1024px) {
+  .areas__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .areas__grid { grid-template-columns: 1fr; }
+  .stats__grid { grid-template-columns: repeat(2, 1fr); }
+  .testimonials__grid { grid-template-columns: 1fr; }
+  .section-pad { padding: 56px 0; }
+}

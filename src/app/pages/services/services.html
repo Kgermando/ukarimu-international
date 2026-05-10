@@ -1,0 +1,81 @@
+<app-page-hero
+  [label]="t().services.hero_label"
+  [title]="t().services.hero_title"
+  [subtitle]="t().services.hero_subtitle">
+</app-page-hero>
+
+<!-- Intro -->
+<section class="intro section-pad">
+  <div class="container">
+    <p class="intro__text">{{ t().services.intro_text }}</p>
+  </div>
+</section>
+
+<!-- Services Categories -->
+<section class="services-list section-pad bg-light" aria-label="Catégories de services">
+  <div class="container">
+    <div class="services__grid">
+      @for (cat of categories(); track cat.title) {
+        <article class="service-card">
+          <div class="service-card__header">
+            <div class="service-card__icon" aria-hidden="true">
+              <mat-icon>{{ cat.icon }}</mat-icon>
+            </div>
+            <h2 class="service-card__title">{{ cat.title }}</h2>
+          </div>
+          <p class="service-card__desc">{{ cat.desc }}</p>
+          <ul class="service-card__list" role="list">
+            @for (svc of cat.services; track svc) {
+              <li>
+                <mat-icon aria-hidden="true">check_circle</mat-icon>
+                <span>{{ svc }}</span>
+              </li>
+            }
+          </ul>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Industries Served -->
+<section class="industries section-pad" aria-labelledby="industries-heading">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-label">{{ i18n.lang() === 'fr' ? 'Secteurs Servis' : 'Industries Served' }}</span>
+      <div class="gold-line" style="margin: 0 auto 24px"></div>
+      <h2 id="industries-heading" class="section-title">
+        {{ i18n.lang() === 'fr' ? 'Nous opérons dans' : 'We operate in' }}
+      </h2>
+    </div>
+    <div class="industries__grid">
+      @for (ind of [
+        {icon: 'agriculture', label: i18n.lang() === 'fr' ? 'Agriculture' : 'Agriculture'},
+        {icon: 'local_hospital', label: i18n.lang() === 'fr' ? 'Santé' : 'Healthcare'},
+        {icon: 'cloud', label: i18n.lang() === 'fr' ? 'Technologie' : 'Technology'},
+        {icon: 'local_shipping', label: i18n.lang() === 'fr' ? 'Logistique' : 'Logistics'},
+        {icon: 'business_center', label: i18n.lang() === 'fr' ? 'Commerce' : 'Commerce'},
+        {icon: 'factory', label: i18n.lang() === 'fr' ? 'Industrie' : 'Industry'},
+        {icon: 'account_balance', label: i18n.lang() === 'fr' ? 'Finance' : 'Finance'},
+        {icon: 'campaign', label: i18n.lang() === 'fr' ? 'Médias' : 'Media'}
+      ]; track ind.label) {
+        <div class="industry-chip">
+          <mat-icon aria-hidden="true">{{ ind.icon }}</mat-icon>
+          <span>{{ ind.label }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner section-pad" aria-labelledby="services-cta">
+  <div class="container cta__inner">
+    <h2 id="services-cta" class="cta__title">{{ t().services.cta_title }}</h2>
+    <p class="cta__text">{{ t().services.cta_text }}</p>
+    <a routerLink="/contact" class="btn-primary">
+      {{ t().services.cta_btn }}
+      <mat-icon aria-hidden="true">arrow_forward</mat-icon>
+    </a>
+  </div>
+</section>

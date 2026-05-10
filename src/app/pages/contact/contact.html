@@ -1,0 +1,144 @@
+<app-page-hero
+  [label]="t().contact.hero_label"
+  [title]="t().contact.hero_title"
+  [subtitle]="t().contact.hero_subtitle">
+</app-page-hero>
+
+<!-- Contact Columns -->
+<section class="contact-section section-pad" aria-label="Contact">
+  <div class="container contact__grid">
+
+    <!-- Info Side -->
+    <aside class="contact-info" aria-labelledby="info-heading">
+      <h2 id="info-heading" class="info-heading">{{ t().contact.info_title }}</h2>
+
+      <ul class="info-list" role="list">
+        <li>
+          <div class="info-icon" aria-hidden="true"><mat-icon>email</mat-icon></div>
+          <div>
+            <span class="info-label">{{ t().contact.email_label }}</span>
+            <a href="mailto:contact@ukarimu-international.com" class="info-value">
+              contact&#64;ukarimu-international.com
+            </a>
+          </div>
+        </li>
+        <li>
+          <div class="info-icon" aria-hidden="true"><mat-icon>phone</mat-icon></div>
+          <div>
+            <span class="info-label">{{ t().contact.phone_label }}</span>
+            <a href="tel:+243000000000" class="info-value">+243 XXX XXX XXX</a>
+          </div>
+        </li>
+        <li>
+          <div class="info-icon" aria-hidden="true"><mat-icon>chat</mat-icon></div>
+          <div>
+            <span class="info-label">{{ t().contact.whatsapp_label }}</span>
+            <a href="https://wa.me/243000000000" target="_blank" rel="noopener noreferrer" class="info-value">
+              +243 XXX XXX XXX
+            </a>
+          </div>
+        </li>
+        <li>
+          <div class="info-icon" aria-hidden="true"><mat-icon>location_on</mat-icon></div>
+          <div>
+            <span class="info-label">{{ t().contact.address_label }}</span>
+            <span class="info-value">
+              <!-- Address to be confirmed -->
+              Kinshasa, République Démocratique du Congo
+            </span>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Social links -->
+      <div class="social-links">
+        <a href="#" class="social-link" aria-label="Facebook" rel="noopener noreferrer" target="_blank">
+          <mat-icon aria-hidden="true">facebook</mat-icon>
+        </a>
+        <a href="#" class="social-link" aria-label="LinkedIn" rel="noopener noreferrer" target="_blank">
+          <mat-icon aria-hidden="true">link</mat-icon>
+        </a>
+        <a href="#" class="social-link" aria-label="YouTube" rel="noopener noreferrer" target="_blank">
+          <mat-icon aria-hidden="true">smart_display</mat-icon>
+        </a>
+      </div>
+
+      <!-- Map placeholder -->
+      <div class="map-ph" role="img" aria-label="Carte de localisation — à venir">
+        <mat-icon aria-hidden="true">map</mat-icon>
+        <span>Google Maps — à venir</span>
+      </div>
+    </aside>
+
+    <!-- Form Side -->
+    <div class="contact-form-wrap">
+      <form [formGroup]="form" (ngSubmit)="submit()" class="contact-form" novalidate aria-label="Formulaire de contact">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name" class="form-label">{{ t().contact.form_name }}</label>
+            <input
+              id="name"
+              type="text"
+              formControlName="name"
+              class="form-input"
+              [attr.aria-invalid]="form.get('name')!.invalid && form.get('name')!.touched"
+              autocomplete="name"
+            />
+            @if (form.get('name')!.invalid && form.get('name')!.touched) {
+              <span class="form-error" role="alert">{{ t().contact.form_required }}</span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">{{ t().contact.form_email }}</label>
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              class="form-input"
+              [attr.aria-invalid]="form.get('email')!.invalid && form.get('email')!.touched"
+              autocomplete="email"
+            />
+            @if (form.get('email')!.invalid && form.get('email')!.touched) {
+              <span class="form-error" role="alert">{{ t().contact.form_email_invalid }}</span>
+            }
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="subject" class="form-label">{{ t().contact.form_subject }}</label>
+          <input
+            id="subject"
+            type="text"
+            formControlName="subject"
+            class="form-input"
+            [attr.aria-invalid]="form.get('subject')!.invalid && form.get('subject')!.touched"
+          />
+          @if (form.get('subject')!.invalid && form.get('subject')!.touched) {
+            <span class="form-error" role="alert">{{ t().contact.form_required }}</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="message" class="form-label">{{ t().contact.form_message }}</label>
+          <textarea
+            id="message"
+            formControlName="message"
+            class="form-input form-textarea"
+            rows="6"
+            [attr.aria-invalid]="form.get('message')!.invalid && form.get('message')!.touched"
+          ></textarea>
+          @if (form.get('message')!.invalid && form.get('message')!.touched) {
+            <span class="form-error" role="alert">{{ t().contact.form_required }}</span>
+          }
+        </div>
+
+        <button type="submit" class="btn-primary submit-btn">
+          {{ t().contact.form_submit }}
+          <mat-icon aria-hidden="true">send</mat-icon>
+        </button>
+      </form>
+    </div>
+
+  </div>
+</section>

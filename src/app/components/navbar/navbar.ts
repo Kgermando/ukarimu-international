@@ -1,14 +1,11 @@
-import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, signal, computed, ChangeDetectionStrategy, inject } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
-
-interface NavLink {
-  label: string;
-  anchor: string;
-}
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { I18nService } from '../../services/i18n.service';
 
 @Component({
   selector: 'app-navbar',
-  imports: [NgOptimizedImage],
+  imports: [NgOptimizedImage, RouterLink, RouterLinkActive],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -18,15 +15,23 @@ interface NavLink {
   }
 })
 export class Navbar {
+  protected readonly i18n = inject(I18nService);
+  protected readonly t = computed(() => this.i18n.t());
   protected readonly scrolled = signal(false);
   protected readonly menuOpen = signal(false);
 
-  protected readonly links: NavLink[] = [
-    { label: 'Accueil',   anchor: '#hero' },
-    { label: 'À propos',  anchor: '#about' },
-    { label: 'Services',  anchor: '#services' },
-    { label: 'Contact',   anchor: '#contact' },
-  ];
+  protected readonly navLinks = computed(() => {
+    const t = this.t().nav;
+    return [
+      { label: t.home,     path: '/' },
+      { label: t.about,    path: '/about' },
+      { label: t.partners, path: '/partners' },
+      { label: t.projects, path: '/projects' },
+      { label: t.impact,   path: '/impact' },
+      { label: t.services, path: '/services' },
+      { label: t.gallery,  path: '/gallery' },
+    ];
+  });
 
   onScroll(): void {
     this.scrolled.set(window.scrollY > 60);
@@ -38,13 +43,6 @@ export class Navbar {
 
   closeMenu(): void {
     this.menuOpen.set(false);
-  }
-
-  scrollTo(anchor: string, event: Event): void {
-    event.preventDefault();
-    this.closeMenu();
-    const id = anchor.replace('#', '');
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   }
 }
 

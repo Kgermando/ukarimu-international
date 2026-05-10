@@ -1,0 +1,101 @@
+<app-page-hero
+  [label]="t().gallery.hero_label"
+  [title]="t().gallery.hero_title"
+  [subtitle]="t().gallery.hero_subtitle">
+</app-page-hero>
+
+<!-- Photos Section -->
+<section class="gallery-section section-pad" aria-labelledby="photos-heading">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">{{ t().gallery.photos_title }}</span>
+      <div class="gold-line"></div>
+      <h2 id="photos-heading" class="section-title">{{ t().gallery.site_visits_title }}</h2>
+    </div>
+
+    <div class="gallery__grid">
+      <!-- Real images -->
+      @for (photo of realPhotos; track photo.src) {
+        <figure class="gallery-item real">
+          <img [ngSrc]="photo.src" [width]="photo.w" [height]="photo.h" [alt]="photo.alt" />
+          <figcaption class="sr-only">{{ photo.alt }}</figcaption>
+        </figure>
+      }
+
+      <!-- Placeholders -->
+      @for (ph of photoPlaceholders; track ph) {
+        <figure class="gallery-item placeholder" [attr.aria-label]="t().gallery.photo_placeholder + ' ' + ph">
+          <div class="ph-inner">
+            <mat-icon aria-hidden="true">image</mat-icon>
+            <span>{{ t().gallery.photo_placeholder }}</span>
+          </div>
+        </figure>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Farm Activities -->
+<section class="gallery-section section-pad bg-light" aria-labelledby="farm-heading">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Our Farm</span>
+      <div class="gold-line"></div>
+      <h2 id="farm-heading" class="section-title">{{ t().gallery.farm_title }}</h2>
+    </div>
+    <div class="gallery__grid small">
+      @for (ph of [1,2,3,4,5,6]; track ph) {
+        <figure class="gallery-item placeholder" [attr.aria-label]="t().gallery.photo_placeholder + ' ' + ph">
+          <div class="ph-inner">
+            <mat-icon aria-hidden="true">agriculture</mat-icon>
+            <span>{{ t().gallery.photo_placeholder }}</span>
+          </div>
+        </figure>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Videos Section -->
+<section class="gallery-section section-pad" aria-labelledby="videos-heading">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">{{ t().gallery.videos_title }}</span>
+      <div class="gold-line"></div>
+      <h2 id="videos-heading" class="section-title">{{ t().gallery.videos_title }}</h2>
+    </div>
+    <div class="videos__grid">
+      @for (ph of videoPlaceholders; track ph) {
+        <div class="video-item" role="img" [attr.aria-label]="t().gallery.video_placeholder + ' ' + ph">
+          <div class="video-ph">
+            <div class="play-btn" aria-hidden="true">
+              <mat-icon>play_circle</mat-icon>
+            </div>
+            <span>{{ t().gallery.video_placeholder }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Drone Footage -->
+<section class="gallery-section section-pad bg-light" aria-labelledby="drone-heading">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Drone</span>
+      <div class="gold-line"></div>
+      <h2 id="drone-heading" class="section-title">{{ t().gallery.drone_title }}</h2>
+    </div>
+    <div class="gallery__grid large">
+      @for (ph of dronePlaceholders; track ph) {
+        <figure class="gallery-item placeholder drone" [attr.aria-label]="t().gallery.photo_placeholder + ' drone ' + ph">
+          <div class="ph-inner">
+            <mat-icon aria-hidden="true">flight</mat-icon>
+            <span>{{ t().gallery.drone_title }}</span>
+          </div>
+        </figure>
+      }
+    </div>
+  </div>
+</section>

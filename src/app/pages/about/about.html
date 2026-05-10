@@ -1,0 +1,97 @@
+<app-page-hero
+  [label]="t().about.hero_label"
+  [title]="t().about.hero_title"
+  [subtitle]="t().about.hero_subtitle">
+</app-page-hero>
+
+<!-- ═══ HISTORY ══════════════════════════════════════════════════════════════ -->
+<section class="history section-pad" aria-labelledby="history-heading">
+  <div class="container history__inner">
+    <div class="history__visual" aria-hidden="true">
+      <div class="img-placeholder tall">
+        <mat-icon>image</mat-icon>
+        <span>{{ t().shared.image_placeholder }}</span>
+        <small>Photo historique UKARIMU</small>
+      </div>
+    </div>
+    <div class="history__content">
+      <span class="section-label">{{ t().about.history_label }}</span>
+      <div class="gold-line"></div>
+      <h2 id="history-heading" class="section-title">{{ t().about.history_title }}</h2>
+      <p class="body-text">{{ t().about.history_text_1 }}</p>
+      <p class="body-text">{{ t().about.history_text_2 }}</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VALUES ═══════════════════════════════════════════════════════════════ -->
+<section class="values section-pad bg-light" aria-labelledby="values-heading">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-label">{{ t().about.values_label }}</span>
+      <div class="gold-line" style="margin: 0 auto 24px"></div>
+      <h2 id="values-heading" class="section-title">{{ t().about.values_title }}</h2>
+    </div>
+    <div class="values__grid">
+      @for (value of values(); track value.title) {
+        <article class="value-card">
+          <div class="value-card__icon" aria-hidden="true">
+            <mat-icon>{{ value.icon }}</mat-icon>
+          </div>
+          <h3 class="value-card__title">{{ value.title }}</h3>
+          <p class="value-card__desc">{{ value.desc }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LEADERSHIP TEAM ═══════════════════════════════════════════════════════ -->
+<section class="team section-pad" aria-labelledby="team-heading">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-label">{{ t().about.team_label }}</span>
+      <div class="gold-line" style="margin: 0 auto 24px"></div>
+      <h2 id="team-heading" class="section-title">{{ t().about.team_title }}</h2>
+    </div>
+    <div class="team__grid">
+      @for (member of team(); track member.name) {
+        <article class="team-card">
+          <div class="team-card__img">
+            <img [ngSrc]="member.img" [width]="member.w" [height]="member.h" [alt]="member.name" />
+          </div>
+          <div class="team-card__body">
+            <span class="team-card__role">{{ member.role }}</span>
+            <h3 class="team-card__name">{{ member.name }}</h3>
+            <p class="team-card__desc">{{ member.desc }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VISION & MISSION ═════════════════════════════════════════════════════ -->
+<section class="vision-mission section-pad bg-navy" aria-labelledby="vision-heading">
+  <div class="container">
+    <div class="vm__grid">
+      <article class="vm-card" aria-labelledby="vision-card-heading">
+        <div class="vm-card__icon" aria-hidden="true">
+          <mat-icon>visibility</mat-icon>
+        </div>
+        <span class="vm-card__label">{{ t().about.vision_label }}</span>
+        <h3 id="vision-card-heading" class="vm-card__title">{{ t().about.vision_title }}</h3>
+        <p class="vm-card__text">{{ t().about.vision_text }}</p>
+      </article>
+
+      <article class="vm-card" aria-labelledby="mission-card-heading">
+        <div class="vm-card__icon" aria-hidden="true">
+          <mat-icon>flag</mat-icon>
+        </div>
+        <span class="vm-card__label">{{ t().about.mission_label }}</span>
+        <h3 id="mission-card-heading" class="vm-card__title">{{ t().about.mission_title }}</h3>
+        <p class="vm-card__text">{{ t().about.mission_text }}</p>
+      </article>
+    </div>
+  </div>
+</section>

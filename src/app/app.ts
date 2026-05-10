@@ -1,22 +1,19 @@
-import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { Navbar } from './components/navbar/navbar';
-import { Hero } from './components/hero/hero';
-import { Services } from './components/services/services';
-import { About } from './components/about/about';
-import { Stats } from './components/stats/stats';
-import { Contact } from './components/contact/contact';
 import { Footer } from './components/footer/footer';
-import { SeoService } from './services/seo.service';
 
 @Component({
   selector: 'app-root',
-  imports: [Navbar, Hero, Services, About, Stats, Contact, Footer],
-  templateUrl: './app.html',
+  imports: [RouterOutlet, Navbar, Footer],
+  template: `
+    <app-navbar></app-navbar>
+    <main id="main-content" tabindex="-1">
+      <router-outlet></router-outlet>
+    </main>
+    <app-footer></app-footer>
+  `,
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class App {
-  constructor() {
-    inject(SeoService).setHomeMeta();
-  }
-}
+export class App {}

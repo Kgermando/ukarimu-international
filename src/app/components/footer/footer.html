@@ -4,34 +4,48 @@
       <div class="footer-grid">
         <!-- Brand column -->
         <div class="footer-brand">
-          <a href="#hero" class="footer-logo" (click)="scrollTo('#hero', $event)" aria-label="Ukarimu International — retour en haut">
+          <a routerLink="/" class="footer-logo" aria-label="UKARIMU International — retour en haut">
             <img ngSrc="/images/logo.png" width="160" height="48" alt="Ukarimu International" />
           </a>
-          <p class="brand-tagline">
-            Votre partenaire de confiance pour toutes vos opérations commerciales,
-            industrielles, financières et de formation à l'échelle internationale.
-          </p>
-          <!-- Social links placeholder -->
+          <p class="brand-tagline">{{ t().footer.tagline }}</p>
           <div class="social-links" aria-label="Réseaux sociaux">
-            <a href="#" class="social-btn" aria-label="LinkedIn" rel="noopener">
+            <a href="#" class="social-btn" aria-label="LinkedIn" rel="noopener noreferrer">
               <mat-icon aria-hidden="true">work</mat-icon>
             </a>
-            <a href="#" class="social-btn" aria-label="Facebook" rel="noopener">
+            <a href="#" class="social-btn" aria-label="Facebook" rel="noopener noreferrer">
               <mat-icon aria-hidden="true">facebook</mat-icon>
             </a>
-            <a href="#" class="social-btn" aria-label="Twitter / X" rel="noopener">
+            <a href="#" class="social-btn" aria-label="Twitter / X" rel="noopener noreferrer">
               <mat-icon aria-hidden="true">tag</mat-icon>
+            </a>
+            <a href="#" class="social-btn" aria-label="WhatsApp" rel="noopener noreferrer">
+              <mat-icon aria-hidden="true">chat</mat-icon>
             </a>
           </div>
         </div>
 
+        <!-- Navigation column -->
+        <div class="footer-col">
+          <h3 class="footer-heading">{{ t().footer.quick_links }}</h3>
+          <ul role="list">
+            @for (link of navLinks(); track link.path) {
+              <li>
+                <a [routerLink]="link.path">
+                  <mat-icon aria-hidden="true">chevron_right</mat-icon>
+                  {{ link.label }}
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+
         <!-- Services column -->
         <div class="footer-col">
-          <h3 class="footer-heading">Nos Services</h3>
+          <h3 class="footer-heading">{{ t().footer.our_services }}</h3>
           <ul role="list">
-            @for (service of services; track service) {
+            @for (service of serviceLinks(); track service) {
               <li>
-                <a href="#services" (click)="scrollTo('#services', $event)">
+                <a routerLink="/services">
                   <mat-icon aria-hidden="true">chevron_right</mat-icon>
                   {{ service }}
                 </a>
@@ -40,46 +54,29 @@
           </ul>
         </div>
 
-        <!-- Navigation column -->
-        <div class="footer-col">
-          <h3 class="footer-heading">Navigation</h3>
-          <ul role="list">
-            <li><a href="#hero" (click)="scrollTo('#hero', $event)">
-              <mat-icon aria-hidden="true">chevron_right</mat-icon>
-              Accueil
-            </a></li>
-            <li><a href="#about" (click)="scrollTo('#about', $event)">
-              <mat-icon aria-hidden="true">chevron_right</mat-icon>
-              À propos
-            </a></li>
-            <li><a href="#services" (click)="scrollTo('#services', $event)">
-              <mat-icon aria-hidden="true">chevron_right</mat-icon>
-              Services
-            </a></li>
-            <li><a href="#contact" (click)="scrollTo('#contact', $event)">
-              <mat-icon aria-hidden="true">chevron_right</mat-icon>
-              Contact
-            </a></li>
-          </ul>
-        </div>
-
         <!-- Contact column -->
         <div class="footer-col">
-          <h3 class="footer-heading">Contact</h3>
+          <h3 class="footer-heading">{{ t().footer.contact_heading }}</h3>
           <ul class="contact-list" role="list">
             <li>
               <mat-icon aria-hidden="true">mail</mat-icon>
               <span>contact&#64;ukarimu-international.com</span>
             </li>
             <li>
-              <mat-icon aria-hidden="true">language</mat-icon>
-              <span>Afrique &amp; International</span>
+              <mat-icon aria-hidden="true">phone</mat-icon>
+              <span>+243 XXX XXX XXX</span>
+            </li>
+            <li>
+              <mat-icon aria-hidden="true">chat</mat-icon>
+              <span>WhatsApp: +243 XXX XXX XXX</span>
+            </li>
+            <li>
+              <mat-icon aria-hidden="true">location_on</mat-icon>
+              <span>République Démocratique du Congo</span>
             </li>
           </ul>
-
-          <!-- CTA in footer -->
-          <a href="#contact" class="footer-cta" (click)="scrollTo('#contact', $event)">
-            Nous écrire →
+          <a routerLink="/contact" class="footer-cta">
+            {{ t().nav.contactBtn }} →
           </a>
         </div>
       </div>
@@ -89,7 +86,7 @@
   <!-- Bottom bar -->
   <div class="footer-bottom">
     <div class="container footer-bottom-inner">
-      <p>© {{ currentYear }} Ukarimu International. Tous droits réservés.</p>
+      <p>{{ t().footer.rights }}</p>
       <p class="footer-tagline">Excellence • Intégrité • Innovation</p>
     </div>
   </div>

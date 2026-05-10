@@ -1,0 +1,91 @@
+<app-page-hero
+  [label]="t().impact.hero_label"
+  [title]="t().impact.hero_title"
+  [subtitle]="t().impact.hero_subtitle">
+</app-page-hero>
+
+<!-- Intro -->
+<section class="intro section-pad">
+  <div class="container">
+    <p class="intro__text">{{ t().impact.intro_text }}</p>
+  </div>
+</section>
+
+<!-- Impact Areas -->
+<section class="areas section-pad bg-light" aria-labelledby="areas-heading">
+  <div class="container">
+    <div class="areas__grid">
+      @for (area of areas(); track area.title; let i = $index) {
+        <article class="area-card">
+          <div class="area-card__num" aria-hidden="true">{{ (i + 1).toString().padStart(2, '0') }}</div>
+          <div class="area-card__icon" aria-hidden="true">
+            <mat-icon>{{ area.icon }}</mat-icon>
+          </div>
+          <h3 class="area-card__title">{{ area.title }}</h3>
+          <p class="area-card__desc">{{ area.desc }}</p>
+          <!-- Photo placeholder -->
+          <div class="area-photo" aria-label="Photo illustration">
+            <mat-icon aria-hidden="true">image</mat-icon>
+            <span>{{ t().shared.image_placeholder }}</span>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="stats-section section-pad" aria-labelledby="stats-heading">
+  <div class="container">
+    <div class="section-header center">
+      <h2 id="stats-heading" class="section-title white">{{ t().impact.stats_title }}</h2>
+    </div>
+    <div class="stats__grid">
+      @for (stat of stats(); track stat.label) {
+        <div class="stat-card">
+          <div class="stat-card__icon" aria-hidden="true">
+            <mat-icon>{{ stat.icon }}</mat-icon>
+          </div>
+          <span class="stat-card__value">{{ stat.value }}</span>
+          <span class="stat-card__label">{{ stat.label }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials section-pad bg-light" aria-labelledby="testimonials-heading">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-label">{{ t().impact.testimonials_label }}</span>
+      <div class="gold-line" style="margin: 0 auto 24px"></div>
+      <h2 id="testimonials-heading" class="section-title">{{ t().impact.testimonials_title }}</h2>
+    </div>
+    <div class="testimonials__grid">
+      @for (testi of testimonials(); track testi.author) {
+        <blockquote class="testi-card">
+          <mat-icon class="quote-icon" aria-hidden="true">format_quote</mat-icon>
+          <p class="testi-card__text">{{ testi.text }}</p>
+          <footer class="testi-card__author">
+            <div class="author-avatar" aria-hidden="true">
+              <mat-icon>person</mat-icon>
+            </div>
+            <span>— {{ testi.author }}</span>
+          </footer>
+        </blockquote>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner section-pad" aria-labelledby="impact-cta">
+  <div class="container cta__inner">
+    <h2 id="impact-cta">{{ t().home.cta_title }}</h2>
+    <a routerLink="/contact" class="btn-primary">
+      {{ t().shared.partner_with_us }}
+      <mat-icon aria-hidden="true">arrow_forward</mat-icon>
+    </a>
+  </div>
+</section>

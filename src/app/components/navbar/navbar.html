@@ -1,26 +1,38 @@
-<nav class="navbar">
+<nav class="navbar" role="navigation" aria-label="Navigation principale">
   <div class="container nav-inner">
     <!-- Logo -->
-    <a href="#hero" class="nav-logo" (click)="scrollTo('#hero', $event)" aria-label="Ukarimu International — Accueil">
+    <a routerLink="/" class="nav-logo" aria-label="UKARIMU International — Accueil">
       <img class="logo-full"  ngSrc="/images/logo.png"      width="160" height="48" alt="Ukarimu International" priority />
       <img class="logo-icon"  ngSrc="/images/logo-icon.png" width="40"  height="40" alt="UKI" priority />
     </a>
 
     <!-- Desktop links -->
     <ul class="nav-links" role="list">
-      @for (link of links; track link.anchor) {
+      @for (link of navLinks(); track link.path) {
         <li>
-          <a [href]="link.anchor" (click)="scrollTo(link.anchor, $event)" class="nav-link">
+          <a [routerLink]="link.path"
+             routerLinkActive="active"
+             [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+             class="nav-link"
+             (click)="closeMenu()">
             {{ link.label }}
           </a>
         </li>
       }
     </ul>
 
-    <!-- CTA -->
-    <a href="#contact" class="btn-primary nav-cta" (click)="scrollTo('#contact', $event)">
-      Nous contacter
-    </a>
+    <!-- Language toggle + CTA -->
+    <div class="nav-actions">
+      <button
+        class="lang-toggle"
+        (click)="i18n.toggleLang()"
+        [attr.aria-label]="i18n.lang() === 'fr' ? 'Switch to English' : 'Passer en Français'">
+        {{ i18n.lang() === 'fr' ? 'EN' : 'FR' }}
+      </button>
+      <a routerLink="/contact" class="btn-primary nav-cta" (click)="closeMenu()">
+        {{ t().nav.contactBtn }}
+      </a>
+    </div>
 
     <!-- Hamburger -->
     <button
@@ -39,18 +51,26 @@
     class="mobile-menu"
     [class.open]="menuOpen()"
     role="dialog"
+    [attr.aria-hidden]="!menuOpen()"
     aria-label="Navigation mobile">
     <ul role="list">
-      @for (link of links; track link.anchor) {
+      @for (link of navLinks(); track link.path) {
         <li>
-          <a [href]="link.anchor" (click)="scrollTo(link.anchor, $event)" class="mobile-link">
+          <a [routerLink]="link.path"
+             routerLinkActive="active"
+             [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+             class="mobile-link"
+             (click)="closeMenu()">
             {{ link.label }}
           </a>
         </li>
       }
-      <li>
-        <a href="#contact" class="btn-primary mobile-cta" (click)="scrollTo('#contact', $event)">
-          Nous contacter
+      <li class="mobile-actions">
+        <button class="lang-toggle" (click)="i18n.toggleLang()">
+          {{ i18n.lang() === 'fr' ? 'English' : 'Français' }}
+        </button>
+        <a routerLink="/contact" class="btn-primary mobile-cta" (click)="closeMenu()">
+          {{ t().nav.contactBtn }}
         </a>
       </li>
     </ul>

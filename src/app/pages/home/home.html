@@ -1,0 +1,234 @@
+<!-- ═══ HERO ═══════════════════════════════════════════════════════════════ -->
+<section class="hero" aria-label="Section principale">
+  <div class="hero__bg" aria-hidden="true">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    @for (p of [1,2,3,4,5,6,7,8]; track p) {
+      <div class="particle" [style.--i]="p"></div>
+    }
+  </div>
+
+  <div class="container hero__inner">
+    <div class="hero__text">
+      <span class="hero__suptitle">{{ t().home.hero_suptitle }}</span>
+      <h1 class="hero__title">
+        <span class="line">{{ t().home.hero_title_1 }}</span>
+        <span class="line accent">{{ t().home.hero_title_2 }}</span>
+        <span class="line">{{ t().home.hero_title_3 }}</span>
+      </h1>
+      <p class="hero__subtitle">{{ t().home.hero_subtitle }}</p>
+
+      <div class="hero__actions">
+        <a routerLink="/projects" class="btn-primary">
+          {{ t().shared.explore_projects }}
+          <mat-icon aria-hidden="true">arrow_forward</mat-icon>
+        </a>
+        <a routerLink="/contact" class="btn-outline">
+          {{ t().shared.contact_us }}
+        </a>
+      </div>
+
+      <div class="hero__badges" aria-label="Points clés">
+        <div class="badge">
+          <mat-icon aria-hidden="true">star</mat-icon>
+          <span>{{ t().home.hero_badge_1 }}</span>
+        </div>
+        <div class="badge-sep" aria-hidden="true">·</div>
+        <div class="badge">
+          <mat-icon aria-hidden="true">handshake</mat-icon>
+          <span>{{ t().home.hero_badge_2 }}</span>
+        </div>
+        <div class="badge-sep" aria-hidden="true">·</div>
+        <div class="badge">
+          <mat-icon aria-hidden="true">volunteer_activism</mat-icon>
+          <span>{{ t().home.hero_badge_3 }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__visual" aria-hidden="true">
+      <div class="visual-card">
+        <div class="img-placeholder">
+          <mat-icon>image</mat-icon>
+          <span>{{ t().shared.image_placeholder }}</span>
+          <small>1200 × 800 px</small>
+        </div>
+        <!-- Floating stats -->
+        <div class="float-stat stat-tl">
+          <span class="stat-value">500+</span>
+          <span class="stat-label">{{ t().home.impact_jobs }}</span>
+        </div>
+        <div class="float-stat stat-br">
+          <span class="stat-value">8</span>
+          <span class="stat-label">{{ t().home.sectors_title }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT TEASER ════════════════════════════════════════════════════════ -->
+<section class="about-teaser section-pad" aria-labelledby="about-heading">
+  <div class="container about-teaser__inner">
+    <div class="about-teaser__visual" aria-hidden="true">
+      <div class="about-img-wrap">
+        <div class="img-placeholder tall">
+          <mat-icon>image</mat-icon>
+          <span>{{ t().shared.image_placeholder }}</span>
+        </div>
+        <div class="about-badge">
+          <mat-icon aria-hidden="true">verified</mat-icon>
+          <span>UKARIMU</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-teaser__content">
+      <span class="section-label">{{ t().home.about_label }}</span>
+      <div class="gold-line"></div>
+      <h2 id="about-heading" class="section-title">{{ t().home.about_title }}</h2>
+      <p class="section-subtitle">{{ t().home.about_text }}</p>
+      <a routerLink="/about" class="btn-primary" style="margin-top: 24px">
+        {{ t().shared.learn_more }}
+        <mat-icon aria-hidden="true">arrow_forward</mat-icon>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTORS ═════════════════════════════════════════════════════════════ -->
+<section class="sectors section-pad bg-light" aria-labelledby="sectors-heading">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">{{ t().home.sectors_label }}</span>
+      <div class="gold-line"></div>
+      <h2 id="sectors-heading" class="section-title">{{ t().home.sectors_title }}</h2>
+    </div>
+    <div class="sectors__grid">
+      @for (sector of sectors(); track sector.title) {
+        <article class="sector-card">
+          <div class="sector-card__icon" aria-hidden="true">
+            <mat-icon>{{ sector.icon }}</mat-icon>
+          </div>
+          <h3 class="sector-card__title">{{ sector.title }}</h3>
+          <p class="sector-card__desc">{{ sector.desc }}</p>
+          <a routerLink="/services" class="sector-card__link" [attr.aria-label]="'En savoir plus sur ' + sector.title">
+            {{ t().shared.learn_more }}
+            <mat-icon aria-hidden="true">arrow_forward</mat-icon>
+          </a>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FEATURED PROJECTS ════════════════════════════════════════════════════ -->
+<section class="featured-projects section-pad" aria-labelledby="projects-heading">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">{{ t().home.projects_label }}</span>
+      <div class="gold-line"></div>
+      <h2 id="projects-heading" class="section-title">{{ t().home.projects_title }}</h2>
+    </div>
+    <div class="projects__grid">
+      @for (project of featuredProjects(); track project.name) {
+        <article class="project-card">
+          <div class="project-card__img">
+            <div class="img-placeholder">
+              <mat-icon aria-hidden="true">{{ project.icon }}</mat-icon>
+            </div>
+          </div>
+          <div class="project-card__body">
+            <h3 class="project-card__title">{{ project.name }}</h3>
+            <p class="project-card__desc">{{ project.desc }}</p>
+            <div class="project-card__footer">
+              <span class="project-location">
+                <mat-icon aria-hidden="true">location_on</mat-icon>
+                {{ project.location }}
+              </span>
+              <a routerLink="/projects" class="project-link">
+                {{ t().shared.learn_more }}
+                <mat-icon aria-hidden="true">arrow_forward</mat-icon>
+              </a>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+    <div class="section-action">
+      <a routerLink="/projects" class="btn-primary">
+        {{ t().shared.view_all }}
+        <mat-icon aria-hidden="true">arrow_forward</mat-icon>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ IMPACT STATS ═════════════════════════════════════════════════════════ -->
+<section class="impact-stats" aria-labelledby="impact-heading">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-label">{{ t().home.impact_label }}</span>
+      <div class="gold-line" style="margin: 0 auto 24px"></div>
+      <h2 id="impact-heading" class="section-title">{{ t().home.impact_title }}</h2>
+    </div>
+    <div class="stats__grid">
+      <div class="stat-item">
+        <span class="stat-value" aria-label="500+">500+</span>
+        <span class="stat-label">{{ t().home.impact_jobs }}</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value" aria-label="8">8</span>
+        <span class="stat-label">{{ t().home.impact_projects }}</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value" aria-label="50+">50+</span>
+        <span class="stat-label">{{ t().home.impact_partners }}</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value" aria-label="1000+">1000+</span>
+        <span class="stat-label">{{ t().home.impact_communities }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PARTNERS PREVIEW ══════════════════════════════════════════════════════ -->
+<section class="partners-preview section-pad bg-light" aria-labelledby="partners-heading">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">{{ t().home.partners_label }}</span>
+      <div class="gold-line"></div>
+      <h2 id="partners-heading" class="section-title">{{ t().home.partners_title }}</h2>
+    </div>
+    <div class="partners__grid">
+      @for (partner of partners(); track partner.name) {
+        <a routerLink="/partners" class="partner-chip" [attr.aria-label]="partner.name + ' — ' + partner.sector">
+          <span class="partner-chip__name">{{ partner.name }}</span>
+          <span class="partner-chip__sector">{{ partner.sector }}</span>
+        </a>
+      }
+    </div>
+    <div class="section-action">
+      <a routerLink="/partners" class="btn-primary">
+        {{ t().shared.learn_more }}
+        <mat-icon aria-hidden="true">arrow_forward</mat-icon>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA BANNER ═══════════════════════════════════════════════════════════ -->
+<section class="cta-banner" aria-labelledby="cta-heading">
+  <div class="cta-banner__bg" aria-hidden="true"></div>
+  <div class="container cta-banner__inner">
+    <div class="cta-banner__content">
+      <h2 id="cta-heading" class="cta-banner__title">{{ t().home.cta_title }}</h2>
+      <p class="cta-banner__text">{{ t().home.cta_text }}</p>
+      <a routerLink="/contact" class="btn-primary">
+        {{ t().home.cta_btn }}
+        <mat-icon aria-hidden="true">arrow_forward</mat-icon>
+      </a>
+    </div>
+  </div>
+</section>

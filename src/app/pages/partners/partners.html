@@ -1,0 +1,42 @@
+<app-page-hero
+  [label]="t().partners.hero_label"
+  [title]="t().partners.hero_title"
+  [subtitle]="t().partners.hero_subtitle">
+</app-page-hero>
+
+<!-- Intro -->
+<section class="intro section-pad">
+  <div class="container">
+    <p class="intro__text">{{ t().partners.intro_text }}</p>
+  </div>
+</section>
+
+<!-- Partners Logo Grid -->
+<section class="partners-section section-pad bg-light" aria-label="Nos partenaires">
+  <div class="container">
+    <div class="logos__grid">
+      @for (partner of partnersList(); track partner.id) {
+        <a class="partner-tile" routerLink="/contact" [attr.aria-label]="partner.name">
+          <div class="partner-tile__logo" [attr.aria-label]="'Logo ' + partner.name">
+            <!-- Logo placeholder — remplacer par <img> quand disponible -->
+            <span class="logo-ph">{{ partner.name[0] }}</span>
+          </div>
+          <span class="partner-tile__name">{{ partner.name }}</span>
+          <p class="partner-tile__desc">{{ partner.desc }}</p>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner section-pad" aria-labelledby="partners-cta">
+  <div class="container cta__inner">
+    <h2 id="partners-cta" class="cta__title">{{ t().home.cta_title }}</h2>
+    <p class="cta__text">{{ t().home.cta_text }}</p>
+    <a routerLink="/contact" class="btn-primary">
+      {{ t().home.cta_btn }}
+      <mat-icon aria-hidden="true">arrow_forward</mat-icon>
+    </a>
+  </div>
+</section>

@@ -1,0 +1,80 @@
+<app-page-hero
+  [label]="t().projects.hero_label"
+  [title]="t().projects.hero_title"
+  [subtitle]="t().projects.hero_subtitle">
+</app-page-hero>
+
+<section class="projects-list section-pad" aria-label="Liste des projets">
+  <div class="container">
+    <div class="projects__grid">
+      @for (project of projects(); track project.name; let i = $index) {
+        <article class="project-card" [class.reverse]="i % 2 !== 0">
+          <!-- Image area -->
+          <div class="project-card__visual" aria-hidden="true">
+            <div class="img-placeholder">
+              <mat-icon>{{ project.icon }}</mat-icon>
+              <span>{{ t().shared.image_placeholder }}</span>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="project-card__content">
+            <span class="project-number" aria-hidden="true">{{ (i + 1).toString().padStart(2, '0') }}</span>
+
+            <div class="project-status" [class]="'status-' + project.status">
+              <span class="status-dot" aria-hidden="true"></span>
+              {{ project.statusLabel }}
+            </div>
+
+            <h2 class="project-card__title">{{ project.name }}</h2>
+            <p class="project-card__desc">{{ project.desc }}</p>
+
+            <div class="project-meta">
+              <div class="meta-row">
+                <mat-icon aria-hidden="true">flag</mat-icon>
+                <div>
+                  <strong>{{ i18n.lang() === 'fr' ? 'Objectifs' : 'Objectives' }}</strong>
+                  <p>{{ project.objectives }}</p>
+                </div>
+              </div>
+              <div class="meta-row">
+                <mat-icon aria-hidden="true">location_on</mat-icon>
+                <div>
+                  <strong>{{ i18n.lang() === 'fr' ? 'Localisation' : 'Location' }}</strong>
+                  <p>{{ project.location }}</p>
+                </div>
+              </div>
+              <div class="meta-row">
+                <mat-icon aria-hidden="true">volunteer_activism</mat-icon>
+                <div>
+                  <strong>{{ i18n.lang() === 'fr' ? 'Impact' : 'Impact' }}</strong>
+                  <p>{{ project.impact }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Photo placeholders -->
+            <div class="project-photos" aria-label="Photos du projet">
+              @for (ph of [1, 2, 3]; track ph) {
+                <div class="photo-ph" [attr.aria-label]="t().shared.image_placeholder">
+                  <mat-icon aria-hidden="true">image</mat-icon>
+                </div>
+              }
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner section-pad" aria-labelledby="projects-cta">
+  <div class="container cta__inner">
+    <h2 id="projects-cta" class="cta__title">{{ t().home.cta_title }}</h2>
+    <a routerLink="/contact" class="btn-primary">
+      {{ t().shared.partner_with_us }}
+      <mat-icon aria-hidden="true">arrow_forward</mat-icon>
+    </a>
+  </div>
+</section>
