@@ -1,0 +1,167 @@
+<section id="contact" class="contact-section" aria-labelledby="contact-heading">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- Info column -->
+      <div class="contact-info">
+        <span class="section-label">Contactez-nous</span>
+        <div class="gold-line"></div>
+        <h2 class="section-title" id="contact-heading">
+          Prêt à travailler<br><em>ensemble ?</em>
+        </h2>
+        <p class="section-subtitle">
+          Notre équipe est à votre disposition pour étudier votre projet
+          et vous proposer la solution la plus adaptée à vos besoins.
+        </p>
+
+        <!-- Contact cards -->
+        <div class="info-cards">
+          <div class="info-card">
+            <div class="info-icon" aria-hidden="true">
+              <mat-icon>phone</mat-icon>
+            </div>
+            <div>
+              <strong>Téléphone</strong>
+              <span>Disponible sur demande</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon" aria-hidden="true">
+              <mat-icon>mail</mat-icon>
+            </div>
+            <div>
+              <strong>Email</strong>
+              <span>contact&#64;ukarimu-international.com</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon" aria-hidden="true">
+              <mat-icon>language</mat-icon>
+            </div>
+            <div>
+              <strong>Présence</strong>
+              <span>Afrique & International</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guarantee -->
+        <div class="guarantee">
+          <mat-icon aria-hidden="true">verified_user</mat-icon>
+          <span>Réponse garantie sous 24–48h ouvrées</span>
+        </div>
+      </div>
+
+      <!-- Form column -->
+      <div class="contact-form-wrapper">
+        @if (!submitted()) {
+          <form
+            [formGroup]="form"
+            (ngSubmit)="onSubmit()"
+            class="contact-form"
+            novalidate
+            aria-label="Formulaire de contact">
+
+            <div class="form-row">
+              <div class="form-group" [class.error]="isInvalid('name')">
+                <label for="name">Nom complet <span aria-hidden="true">*</span></label>
+                <input
+                  id="name"
+                  type="text"
+                  formControlName="name"
+                  placeholder="Ex : Jean-Pierre Dupont"
+                  autocomplete="name"
+                  [attr.aria-invalid]="isInvalid('name')"
+                  aria-describedby="name-error" />
+                @if (isInvalid('name')) {
+                  <span id="name-error" class="error-msg" role="alert">
+                    Veuillez saisir votre nom complet (min. 2 caractères).
+                  </span>
+                }
+              </div>
+
+              <div class="form-group" [class.error]="isInvalid('email')">
+                <label for="email">Adresse e-mail <span aria-hidden="true">*</span></label>
+                <input
+                  id="email"
+                  type="email"
+                  formControlName="email"
+                  placeholder="Ex : jean&#64;entreprise.com"
+                  autocomplete="email"
+                  [attr.aria-invalid]="isInvalid('email')"
+                  aria-describedby="email-error" />
+                @if (isInvalid('email')) {
+                  <span id="email-error" class="error-msg" role="alert">
+                    Veuillez saisir une adresse e-mail valide.
+                  </span>
+                }
+              </div>
+            </div>
+
+            <div class="form-group" [class.error]="isInvalid('subject')">
+              <label for="subject">Service concerné <span aria-hidden="true">*</span></label>
+              <select
+                id="subject"
+                formControlName="subject"
+                [attr.aria-invalid]="isInvalid('subject')"
+                aria-describedby="subject-error">
+                <option value="" disabled selected>Sélectionnez un service...</option>
+                @for (s of subjects; track s) {
+                  <option [value]="s">{{ s }}</option>
+                }
+              </select>
+              @if (isInvalid('subject')) {
+                <span id="subject-error" class="error-msg" role="alert">
+                  Veuillez sélectionner un service.
+                </span>
+              }
+            </div>
+
+            <div class="form-group" [class.error]="isInvalid('message')">
+              <label for="message">Votre message <span aria-hidden="true">*</span></label>
+              <textarea
+                id="message"
+                formControlName="message"
+                rows="5"
+                placeholder="Décrivez votre projet ou votre besoin..."
+                [attr.aria-invalid]="isInvalid('message')"
+                aria-describedby="message-error"></textarea>
+              @if (isInvalid('message')) {
+                <span id="message-error" class="error-msg" role="alert">
+                  Votre message doit comporter au moins 20 caractères.
+                </span>
+              }
+            </div>
+
+            <button
+              type="submit"
+              class="btn-submit"
+              [disabled]="sending()"
+              [class.sending]="sending()"
+              aria-live="polite">
+              @if (sending()) {
+                <span class="spinner" aria-hidden="true"></span>
+                Envoi en cours...
+              } @else {
+                Envoyer le message
+                <mat-icon aria-hidden="true">send</mat-icon>
+              }
+            </button>
+          </form>
+        } @else {
+          <div class="success-state" role="status" aria-live="polite">
+            <div class="success-icon" aria-hidden="true">
+              <mat-icon>check_circle</mat-icon>
+            </div>
+            <h3>Message envoyé !</h3>
+            <p>Merci de nous avoir contactés. Nous vous répondrons dans les 24–48h ouvrées.</p>
+            <button class="btn-primary" (click)="resetForm()">Envoyer un autre message</button>
+          </div>
+        }
+      </div>
+
+    </div>
+  </div>
+</section>

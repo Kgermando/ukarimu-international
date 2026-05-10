@@ -1,0 +1,96 @@
+<footer class="footer" role="contentinfo">
+  <div class="footer-top">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand column -->
+        <div class="footer-brand">
+          <a href="#hero" class="footer-logo" (click)="scrollTo('#hero', $event)" aria-label="Ukarimu International — retour en haut">
+            <img ngSrc="/images/logo.png" width="160" height="48" alt="Ukarimu International" />
+          </a>
+          <p class="brand-tagline">
+            Votre partenaire de confiance pour toutes vos opérations commerciales,
+            industrielles, financières et de formation à l'échelle internationale.
+          </p>
+          <!-- Social links placeholder -->
+          <div class="social-links" aria-label="Réseaux sociaux">
+            <a href="#" class="social-btn" aria-label="LinkedIn" rel="noopener">
+              <mat-icon aria-hidden="true">work</mat-icon>
+            </a>
+            <a href="#" class="social-btn" aria-label="Facebook" rel="noopener">
+              <mat-icon aria-hidden="true">facebook</mat-icon>
+            </a>
+            <a href="#" class="social-btn" aria-label="Twitter / X" rel="noopener">
+              <mat-icon aria-hidden="true">tag</mat-icon>
+            </a>
+          </div>
+        </div>
+
+        <!-- Services column -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Nos Services</h3>
+          <ul role="list">
+            @for (service of services; track service) {
+              <li>
+                <a href="#services" (click)="scrollTo('#services', $event)">
+                  <mat-icon aria-hidden="true">chevron_right</mat-icon>
+                  {{ service }}
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <!-- Navigation column -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Navigation</h3>
+          <ul role="list">
+            <li><a href="#hero" (click)="scrollTo('#hero', $event)">
+              <mat-icon aria-hidden="true">chevron_right</mat-icon>
+              Accueil
+            </a></li>
+            <li><a href="#about" (click)="scrollTo('#about', $event)">
+              <mat-icon aria-hidden="true">chevron_right</mat-icon>
+              À propos
+            </a></li>
+            <li><a href="#services" (click)="scrollTo('#services', $event)">
+              <mat-icon aria-hidden="true">chevron_right</mat-icon>
+              Services
+            </a></li>
+            <li><a href="#contact" (click)="scrollTo('#contact', $event)">
+              <mat-icon aria-hidden="true">chevron_right</mat-icon>
+              Contact
+            </a></li>
+          </ul>
+        </div>
+
+        <!-- Contact column -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Contact</h3>
+          <ul class="contact-list" role="list">
+            <li>
+              <mat-icon aria-hidden="true">mail</mat-icon>
+              <span>contact&#64;ukarimu-international.com</span>
+            </li>
+            <li>
+              <mat-icon aria-hidden="true">language</mat-icon>
+              <span>Afrique &amp; International</span>
+            </li>
+          </ul>
+
+          <!-- CTA in footer -->
+          <a href="#contact" class="footer-cta" (click)="scrollTo('#contact', $event)">
+            Nous écrire →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>© {{ currentYear }} Ukarimu International. Tous droits réservés.</p>
+      <p class="footer-tagline">Excellence • Intégrité • Innovation</p>
+    </div>
+  </div>
+</footer>

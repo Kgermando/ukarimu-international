@@ -1,0 +1,59 @@
+<section id="services" class="services-section" aria-labelledby="services-heading">
+  <div class="container">
+    <!-- Header -->
+    <div class="section-header">
+      <span class="section-label">Nos domaines d'intervention</span>
+      <div class="gold-line"></div>
+      <h2 class="section-title" id="services-heading">
+        Une expertise à<br><em>votre mesure</em>
+      </h2>
+      <p class="section-subtitle">
+        De l'import-export de minerais RDC (cobalt, or, cuivre, diamant, coltan)
+        à la gestion de bitume pour routes modernes, en passant par la formation en langues,
+        les logiciels et le consulting — UKI couvre tous vos besoins professionnels en RDC.
+      </p>
+    </div>
+
+    <!-- Services grid -->
+    <div class="services-grid" role="list">
+      @for (service of services; track service.id) {
+        <article class="service-card" role="listitem">
+          <!-- Image zone -->
+          <div class="card-image" [attr.aria-label]="service.imageAlt">
+            <div class="image-placeholder-sm" role="img" [attr.aria-label]="service.imageAlt">
+              <span class="img-hint">Image illustrative</span>
+            </div>
+            <div class="card-icon-badge" aria-hidden="true"><mat-icon>{{ service.icon }}</mat-icon></div>
+          </div>
+
+          <!-- Content -->
+          <div class="card-content">
+            <h3 class="card-title">{{ service.title }}</h3>
+            <p class="card-desc">{{ service.description }}</p>
+
+            <ul class="highlights" role="list">
+              @for (h of service.highlights; track h) {
+                <li>
+                  <mat-icon aria-hidden="true">check_circle</mat-icon>
+                  {{ h }}
+                </li>
+              }
+            </ul>
+          </div>
+
+          <!-- Hover accent -->
+          <div class="card-accent" aria-hidden="true"></div>
+        </article>
+      }
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="services-cta">
+      <p>Besoin d'une solution personnalisée ?</p>
+      <a href="#contact" class="btn-primary" (click)="scrollToContact($event)">
+        Parlons de votre projet
+        <mat-icon aria-hidden="true">arrow_forward</mat-icon>
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://ukarimu-international.com/sitemap.xml
+
+# Éviter l'indexation des fichiers non pertinents
+Disallow: /assets/

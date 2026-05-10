@@ -1,0 +1,28 @@
+<section class="stats-section" aria-label="Chiffres clés d'Ukarimu International">
+  <div class="stats-bg" aria-hidden="true">
+    <div class="bg-pattern"></div>
+  </div>
+  <div class="container">
+    <div class="stats-grid" role="list">
+      @for (stat of stats; track stat.label) {
+        <div class="stat-item" role="listitem">
+          <div class="stat-icon" aria-hidden="true"><mat-icon>{{ stat.icon }}</mat-icon></div>
+          <div class="stat-value" aria-label="{{ stat.value }} {{ stat.label }}">{{ stat.value }}</div>
+          <div class="stat-label">{{ stat.label }}</div>
+        </div>
+      }
+    </div>
+
+    <!-- Mission statement -->
+    <div class="mission-banner">
+      <div class="mission-icon" aria-hidden="true">
+        <mat-icon>verified_user</mat-icon>
+      </div>
+      <p>
+        <strong>Notre mission :</strong> Réaliser toutes les opérations financières, commerciales,
+        industrielles, mobilières et immobilières se rattachant directement ou indirectement
+        à notre objet social — pour le succès durable de nos partenaires.
+      </p>
+    </div>
+  </div>
+</section>

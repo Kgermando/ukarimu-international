@@ -1,0 +1,95 @@
+<section id="hero" class="hero" aria-label="Section principale">
+  <!-- Animated background shapes -->
+  <div class="hero-bg" aria-hidden="true">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="particles">
+      @for (p of [1,2,3,4,5,6,7,8,9,10,11,12]; track p) {
+        <div class="particle" [style.--i]="p"></div>
+      }
+    </div>
+  </div>
+
+  <div class="container hero-content">
+    <div class="hero-text"> 
+
+      <h1 class="hero-title animate-fade-up" style="--delay:.25s">
+        <span class="title-line">Votre partenaire</span>
+        <span class="title-line gold">International</span>
+        <span class="title-line">de Confiance</span>
+      </h1>
+
+      <p class="hero-subtitle animate-fade-up" style="--delay:.4s">
+        Ukarimu International offre des solutions professionnelles à haute valeur ajoutée :
+        consulting, import-export de minerais (cobalt, or, cuivre, diamant, coltan),
+        gestion de bitume pour routes modernes, formation en langues &amp; English Corner,
+        logiciels et technologies — au service des entreprises opérant en RDC.
+      </p>
+
+      <div class="hero-actions animate-fade-up" style="--delay:.55s">
+        <a href="#services" class="btn-primary" (click)="scrollTo('#services', $event)">
+          Découvrir nos services
+          <mat-icon aria-hidden="true">arrow_forward</mat-icon>
+        </a>
+        <a href="#contact" class="btn-outline" (click)="scrollTo('#contact', $event)">
+          Prendre contact
+        </a>
+      </div>
+
+      <!-- Trust badges -->
+      <div class="trust-row animate-fade-up" style="--delay:.7s">
+        <div class="trust-item">
+          <mat-icon aria-hidden="true">star</mat-icon>
+          <span>Excellence prouvée</span>
+        </div>
+        <div class="trust-sep" aria-hidden="true">·</div>
+        <div class="trust-item">
+          <mat-icon aria-hidden="true">verified_user</mat-icon>
+          <span>Fiabilité garantie</span>
+        </div>
+        <div class="trust-sep" aria-hidden="true">·</div>
+        <div class="trust-item">
+          <mat-icon aria-hidden="true">handshake</mat-icon>
+          <span>Partenariats durables</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero visual -->
+    <div class="hero-visual animate-fade-up" style="--delay:.3s" aria-hidden="true">
+      <div class="hero-image-wrapper">
+        <!-- Image placeholder — remplacez par une vraie image -->
+        <div class="image-placeholder" role="img" aria-label="Illustration professionnelle UKI">
+          <div class="placeholder-inner">
+            <mat-icon aria-hidden="true">image</mat-icon>
+            <p>Image illustrative</p>
+            <small>1200 × 800 px recommandé</small>
+          </div>
+        </div>
+        <!-- Floating card 1 -->
+        <div class="float-card card-top">
+          <div class="card-icon"><mat-icon aria-hidden="true">handshake</mat-icon></div>
+          <div>
+            <strong>Partenaires Mondiaux</strong>
+            <span>Réseau international</span>
+          </div>
+        </div>
+        <!-- Floating card 2 -->
+        <div class="float-card card-bottom">
+          <div class="card-icon"><mat-icon aria-hidden="true">task_alt</mat-icon></div>
+          <div>
+            <strong>6 Domaines</strong>
+            <span>d'expertise clés</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="scroll-indicator" aria-hidden="true">
+    <div class="scroll-line"></div>
+    <span>Défiler</span>
+  </div>
+</section>
